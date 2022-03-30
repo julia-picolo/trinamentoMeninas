@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <h1>Lista de Tarefas</h1>
+
+    <form id="task-form" onsubmit="addTask(event)">
+        <!-- Quando required é colocado dentro de um formulário, o usuário é obrigado, neste caso, a colocar a descroção da tarefa no campo input, se não o formulario não vai ser submetido -->
+        <input type="text" name="task-description" id="task-description" placeholder="Digite uma tarefa" required>
+        <button>Adicionar</button>
+    </form>
+
+    <div id="task-list-area">
+        <ul id="task-list"></ul>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
