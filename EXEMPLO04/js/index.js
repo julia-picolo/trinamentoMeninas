@@ -53,6 +53,7 @@ const addTask = (event) => {
 
     // invocando a função que serve para salvar a descrição de tarefa que o usuário digitou no vetor para, então, salvar no local Storage
     saveToLocalStorage(taskDescription)
+
 }
 
 // essa função vai ser invocada sempre que alguma task for adcionada na lista e serve para salvar as informações (tasks) no localStorage
@@ -72,23 +73,19 @@ const removeTask = (id) => {
     let taskDescription = $(`#${id}`)
     taskList.removeChild(taskDescription)
 
-    removeFromLocalStorage(counter)
+    removeFromLocalStorage(id)
 }
 
-const removeFromLocalStorage = (counter) => {
-    console.log('bla');
-    const count = parseInt(counter)
+const removeFromLocalStorage = (id) => {
+
+    const idStr = id.replace('task', '')
+    const targetId = parseInt(idStr)
+
     const tasksJson = localStorage.getItem('tasks')
     let tasks = JSON.parse(tasksJson)
-    var newArrayTasks = []
 
-    for (var i = 0; i < tasks.length; i++) {
-        if (tasks[i] != tasks[count]) {
-            newArrayTasks.push(tasks[i])
-        }
-    }
+    tasks = [...tasks.slice(0, targetId), ...tasks.slice(targetId + 1)]
 
-    // console.log(newArrayTasks);
-    const newTasksJson = JSON.stringify(newArrayTasks)
+    const newTasksJson = JSON.stringify(tasks)
     localStorage.setItem('tasks', newTasksJson)
 }
